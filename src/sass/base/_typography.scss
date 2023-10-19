@@ -1,3 +1,4 @@
+@use '../util';
 
 h2 {
     color: var(--white);
@@ -11,6 +12,12 @@ button {
     font-size: 1rem;
     box-shadow: none;
     border: none;
+
+    @include util.breakpoint(x-large) {
+        width: 12.875rem;
+        height: 4rem;
+        border-radius: 2.375rem;
+    }
 }
 
 li{
@@ -19,7 +26,7 @@ li{
     list-style: none;
     padding: 0.937rem;
     border-radius: 2.1875rem;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 600;
     border: 0.0625em solid var(--bubbleInnerText);
     color: var(--bubbleInnerText);

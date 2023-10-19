@@ -1,13 +1,14 @@
 @use '../base/colors';
 @use '../layout/flex';
+@use '../util';
 
 .card {
-    min-height: 85%;
-    min-width: 85%;
+    height: 85%;
+    width: 85%;
     background-color: var(--white);
     border-radius: 50px;
     box-shadow: 0.125rem 0.25rem 0.25rem var(--box-shadow);
-
+  
     &__tittle {
         width: 80%;
         height: 4rem;
