@@ -1,0 +1,26 @@
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    &__gap100 {
+        gap: 6.25rem;
+    }
+
+    &__gap35 {
+        /* gap: 2.5rem; */
+        gap: 2.1875rem;
+    }
+
+    &__gap24 {
+        gap: 1.5rem;
+    }
+
+    &__space-ev {
+        justify-content: space-evenly;
+    }
+    
+    
+}

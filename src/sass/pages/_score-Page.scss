@@ -1,0 +1,17 @@
+@use '../base/colors';
+@use '../layout/flex';
+@use '../util';
+
+.appreciation {
+    font-size: 2.25rem;
+    color: var(--white);
+}
+
+.score {
+    font-size: 1.375rem;
+    color: var(--orange);
+}
+
+.homePage-butt {
+    @include util.start;
+}

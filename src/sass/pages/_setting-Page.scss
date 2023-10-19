@@ -1,0 +1,30 @@
+@use '../base/colors';
+@use '../layout/flex';
+
+.card {
+    min-height: 85%;
+    min-width: 85%;
+    background-color: var(--white);
+    border-radius: 50px;
+    box-shadow: 0.125rem 0.25rem 0.25rem var(--box-shadow);
+
+    &__tittle {
+        width: 80%;
+        height: 4rem;
+        border-radius: 2.1875rem;
+        background-color: var(--cardTittle);
+        font-size: 1.75rem;
+    }
+
+    &__bubble {
+        width: 14.0625rem;
+        height: 3.75rem;
+        margin-bottom: 0.75em;
+        font-weight: 500;
+    }
+
+    &__button {
+        background-color: var(--cardTittle);
+        color: var(--white);
+    }
+}

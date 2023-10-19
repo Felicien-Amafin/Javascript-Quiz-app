@@ -1,0 +1,85 @@
+@use '../base/colors';
+@use '../layout/flex';
+@use '../util';
+
+
+.overlay {
+    width: 100%;
+    height: 100%;
+
+    &__show-up {
+        background-color: var(--overlay);
+    }
+}
+
+.h1 {
+    font-size: 3.125rem;
+
+    &__prt1 {
+        color: var(--white);
+    }
+
+    &__prt2 {
+        color: var(--orange);
+    }
+}
+
+.flex-buttons {
+    gap: 2rem;
+
+    .play-butt {
+        @include util.start;
+    }
+    
+    .rules-butt {
+        width: 9.375rem;
+        border: 0.0625rem solid var(--white);
+        background-color: transparent;
+        color: var(--white);
+        align-items: center;
+        transition: 0.5s;
+
+        &:hover {
+            transform: scale(1.1);
+        } 
+    }
+}
+
+
+.alert-box {
+    position: absolute;
+    top: 3.125rem;
+    padding: 1.875rem;
+    z-index: 2000;
+    width: 80%;
+    height: 80%;
+    background-color: var(--white);
+    text-align: center;
+    line-height: 2.5rem;
+
+    &__tittle {
+        font-weight: 600;
+        font-size: 1.5rem;
+        color: var(--orange);
+    }
+
+    &__message {
+        text-align: center;
+        line-height: 2rem;
+        font-weight: 500;
+        font-size: 1.125rem;
+        margin-bottom: 0.625rem;
+        color: var(--bubbleInnerText);
+    }
+
+    &__butt {
+        background-color: transparent;
+        color: var(--bubbleInnerText);
+        border: 0.09375rem solid var(--bubbleInnerText);
+        width: 9.375rem;
+        
+        &:hover {
+            border: 0.09375rem solid var(--alert-butt-hover);
+        }
+    }
+}

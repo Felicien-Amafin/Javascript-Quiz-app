@@ -1,0 +1,11 @@
+
+@mixin start {
+    background-color: var(--white);
+    color: var(--bubbleInnerText);
+    transition: 0.5s;
+    border: none;
+
+    &:hover {
+        transform: scale(1.1);
+    } 
+}

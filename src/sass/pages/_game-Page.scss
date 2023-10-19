@@ -1,0 +1,82 @@
+@use '../base/colors';
+@use '../layout/flex';
+
+.block1 {
+    &__countdown {
+        min-height: 4.375rem;
+        min-width: 4.375rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+    }
+
+    .countdown_outer-circle {
+        height: 4.375rem;
+        width: 4.375rem;
+        /* background-image: linear-gradient(to top, orange, yellow, blue); */
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .countdown_inner-circle {
+        height: 3.125rem;
+        width: 3.125rem;
+        background-color: var(--gradient1);
+        background-color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .countdown_timer {
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgb(27, 124, 27);
+    }
+    
+    &__qust-counter {
+        font-size: 1.25rem;
+    }
+
+    .qust-counter-p1 {
+        color: white;
+    }
+    
+    .qust-counter-p2 {
+        color: var(--orange);
+    }
+
+    &__rsp-feedback {
+        text-align: center;
+        height: 1.25rem;
+        width: auto;
+        min-width: 6.25rem;
+        
+    }
+}
+
+.block2 {
+    &__question {
+        font-size: 1.625rem;
+        text-align: center;
+        line-height: 2.125rem;
+    }
+    &__bubble {
+        min-width: 18.75rem;
+        min-height: 3.75rem;
+        margin-bottom: 1.25rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        border: none;
+    }
+    &__button {
+        background-color: transparent;
+        border: 0.0625rem solid var(--validateButt-disable);
+        color: var(--validateButt-disable);
+
+    }
+}

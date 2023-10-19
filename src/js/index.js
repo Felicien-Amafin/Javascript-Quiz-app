@@ -8,22 +8,20 @@ import { SettingPage } from './settingPage.js'
 class App {
     static init() {
         const scorePage = new ScorePage('page');
-        const gamePage = new GamePage('page','', ['', '', '', ''], scorePage.render.bind(scorePage));
-        const levelPage = 
-        new SettingPage(
+        const gamePage = new GamePage('page','', ['', '', '', ''], scorePage.renderScorePage.bind(scorePage));
+        const levelPage = new SettingPage(
             'page',
             'Levels', 
             ['Easy', 'Medium', 'Hard'], 
             'Next', 
             gamePage.renderGamePage.bind(gamePage)
             );
-        const topicPage = 
-        new SettingPage(
+        const topicPage = new SettingPage(
              'page',
              'Topics', 
              ['Film and Tv', 'Science', 'General Klg', 'History', 'Music'], 
              'Next', 
-             levelPage.renderSettingPage.bind(levelPage)
+             levelPage.updateSettingPage.bind(levelPage)
              );
         const homePage = new HomePage('page', topicPage.renderSettingPage.bind(topicPage));
 
