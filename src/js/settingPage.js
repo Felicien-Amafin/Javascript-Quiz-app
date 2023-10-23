@@ -16,11 +16,11 @@ export class SettingPage {
         UpdateUI.updateLiNumber(this.lilist);
         this.addStaticTextContent(this.h2TextContent, this.lilist, this.buttonTextContent);
         UpdateUI.clearClass([ 'page' ]);
-        document.getElementById('app').classList.remove('app-p-relat');
+        document.getElementById('app').classList.remove('app');
         //Add Ids and className to UpdateUI function
         UpdateUI.applyStyle(
             [   
-                [ 'page', [ 'flex', 'page' ] ],
+                [ 'page', [ 'page' ] ],
                 [ 'sub-container', [ 'card', 'flex', 'flex__space-ev' ] ], 
                 [ 'tittle', [ 'card__tittle', 'flex' ] ], 
                 [ 'button', [ 'card__button' ] ]

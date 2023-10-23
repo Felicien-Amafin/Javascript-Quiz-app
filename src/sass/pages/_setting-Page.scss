@@ -3,29 +3,42 @@
 @use '../util';
 
 .card {
-    height: 85%;
-    width: 85%;
     background-color: var(--white);
-    border-radius: 50px;
-    box-shadow: 0.125rem 0.25rem 0.25rem var(--box-shadow);
-  
+    min-height: 100%;
+    width:100%;
+    max-width: 36rem;
+    margin: auto;
+    padding: 1.25rem;
+    border-radius: 1.875rem;
+
     &__tittle {
-        width: 80%;
-        height: 4rem;
-        border-radius: 2.1875rem;
+        height: 3.75rem;
+        font-size: 1.375rem ;
+        border-radius: 1.875rem;
+        margin-bottom: 1.25rem;
+        color: var(--white);
         background-color: var(--cardTittle);
-        font-size: 1.75rem;
+        width: min(80%, 400px);
+
+        @include util.breakpoint(small) {
+            font-size: 1.5rem;
+        } 
+
+        @include util.breakpoint(medium) {
+            font-size: 1.625rem;
+        } 
     }
 
     &__bubble {
-        width: 14.0625rem;
+        width: 12.5rem;
         height: 3.75rem;
-        margin-bottom: 0.75em;
-        font-weight: 500;
+        margin-bottom: 1.25rem;
     }
 
     &__button {
         background-color: var(--cardTittle);
         color: var(--white);
+        width: 12.5rem;
+        height: 3.75rem;
     }
 }

@@ -5,6 +5,7 @@ h2 {
 }
 
 button {
+    /* width: 12.5rem; */
     width: 12.5rem;
     height: 3.75rem;
     border-radius: 1.875rem;
@@ -12,12 +13,6 @@ button {
     font-size: 1rem;
     box-shadow: none;
     border: none;
-
-    @include util.breakpoint(x-large) {
-        width: 12.875rem;
-        height: 4rem;
-        border-radius: 2.375rem;
-    }
 }
 
 li{

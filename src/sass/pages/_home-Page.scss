@@ -8,7 +8,7 @@
     top: 0;
     right:0;
     left: 0;
-    height: 100%;
+    min-height: 100%;
 
     &__show-up {
         background-color: var(--overlay);
@@ -54,10 +54,13 @@
         color: var(--white);
         align-items: center;
         transition: 0.5s;
+        
+        
+        
 
-        @include util.breakpoint(x-large) {
+       /*  @include util.breakpoint(x-large) {
             width: 9.625rem;
-        }
+        } */
 
         &:hover {
             transform: scale(1.1);
@@ -73,7 +76,7 @@
     z-index: 2000;
     width: 80%;
     max-width: 36rem;
-    height: 80%;
+    min-height: 80%;
     background-color: var(--white);
     text-align: center;
     line-height: 2.5rem;
@@ -90,7 +93,7 @@
 
     &__tittle {
         font-weight: 600;
-        font-size: 1.5rem;
+        font-size: 1.625rem;
         color: var(--orange);
 
         @include util.breakpoint(small) {
@@ -98,11 +101,11 @@
         } 
 
         @include util.breakpoint(medium) {
-            font-size: 1.875rem;
+            font-size: 1.75rem;
         } 
 
         @include util.breakpoint(x-large) {
-            font-size: 2.125rem;
+            font-size: 2rem;
         } 
     }
 
@@ -113,10 +116,6 @@
         font-size: 1.125rem;
         margin-bottom: 0.625rem;
         color: var(--bubbleInnerText);
-
-        @include util.breakpoint(small) {
-            line-height: 2.375rem;
-        } 
 
         @include util.breakpoint(medium) {
             font-size: 1.25rem;
@@ -131,10 +130,6 @@
         color: var(--bubbleInnerText);
         border: 0.09375rem solid var(--bubbleInnerText);
         width: 9.375rem;
-
-        @include util.breakpoint(x-large) {
-            width: 9.625rem;
-        }
 
         &:hover {
             border: 0.09375rem solid var(--alert-butt-hover);

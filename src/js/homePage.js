@@ -20,9 +20,9 @@ export class HomePage {
         //Add Ids and className to UpdateUI function
         UpdateUI.applyStyle(
             [  
-                [ 'app', [ 'app-p-relat'] ],
+                [ 'app', [ 'app'] ],
                 [ 'page', [ 'page'] ],
-                [ 'overlay', [ 'flex','flex__gap100', 'overlay'] ],
+                [ 'overlay', [ 'flex', 'flex__gap100', 'overlay'] ],
                 [ 'buttons', [ 'flex', 'flex-buttons' ] ]
             ],
 

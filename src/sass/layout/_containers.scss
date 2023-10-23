@@ -1,13 +1,11 @@
 @use '../util';
 
-.app-p-relat {
+.app{
     position: relative;
 }
 
 .page {
     width: 100%;
-    
-    @include util.breakpoint(small) {
-        max-width: 576px;
-    } 
+    height: 100%;
+    padding: 1.875rem;
 }
