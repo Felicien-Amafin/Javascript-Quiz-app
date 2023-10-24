@@ -12,7 +12,7 @@ export class ScorePage {
         //Add Ids and className to UpdateUI function
         UpdateUI.applyStyle(
             [   
-                [ 'page', [ 'flex', 'flex__space-ev' ] ],
+                [ 'page', [ 'page', 'flex', 'flex__space-ev' ] ],
                 [ 'appreciation', [ 'appreciation' ] ], 
                 [ 'score', [ 'score' ] ], 
                 [ 'home-page-butt', [ 'homePage-butt' ] ]
