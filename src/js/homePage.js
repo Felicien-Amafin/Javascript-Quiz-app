@@ -21,7 +21,7 @@ export class HomePage {
         UpdateUI.applyStyle(
             [  
                 [ 'app', [ 'app'] ],
-                [ 'page', [ 'page'] ],
+                [ 'page', [ 'page', 'page'] ],
                 [ 'overlay', [ 'flex', 'flex__gap100', 'overlay'] ],
                 [ 'buttons', [ 'flex', 'flex-buttons' ] ]
             ],

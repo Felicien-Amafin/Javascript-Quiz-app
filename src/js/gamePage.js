@@ -12,13 +12,13 @@ export class GamePage {
     renderGamePage() {
         this.addMissingPageElements();
         UpdateUI.updateLiNumber(this.lilist);
-        UpdateUI.clearClass([ 'page','sub-container2' ], [ 'sub-container2', 'list' ])
+        UpdateUI.clearClass([ 'page', 'sub-container2' ], [ 'sub-container2', 'list' ])
         
         //Add Ids and clasName to UpdateUI function
         UpdateUI.applyStyle(
-            [   [ 'page', [ 'flex', 'flex__gap35' ] ],
-                [ 'sub-container1', [ 'block1', 'flex', 'flex__gap24' ] ],
-                [ 'sub-container2', [ 'block2', 'flex', 'flex__gap24' ] ]
+            [   [ 'page', [ 'game-page' ] ],
+                [ 'sub-container1', [ 'block1', 'flex' ] ],
+                [ 'sub-container2', [ 'block2', 'flex' ] ]
             ],
           
             [

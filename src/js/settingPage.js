@@ -20,7 +20,7 @@ export class SettingPage {
         //Add Ids and className to UpdateUI function
         UpdateUI.applyStyle(
             [   
-                [ 'page', [ 'page' ] ],
+                [ 'page', [ 'page', 'page' ] ],
                 [ 'sub-container', [ 'card', 'flex', 'flex__space-ev' ] ], 
                 [ 'tittle', [ 'card__tittle', 'flex' ] ], 
                 [ 'button', [ 'card__button' ] ]
