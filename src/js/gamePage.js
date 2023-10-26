@@ -1,5 +1,5 @@
-import { DomHelper} from "./domHelper.js";
 import { UpdateUI } from "./updateUI.js";
+import { App } from "./app.js";
 
 export class GamePage {
     constructor(containerId, h2TextContent, lilist, renderNextPage) {
@@ -11,9 +11,8 @@ export class GamePage {
 
     renderGamePage() {
         this.addMissingPageElements();
+        UpdateUI.clearClass([ 'page', 'sub-container2' ], [ 'sub-container2', 'list' ]);
         UpdateUI.updateLiNumber(this.lilist);
-        UpdateUI.clearClass([ 'page', 'sub-container2' ], [ 'sub-container2', 'list' ])
-        
         //Add Ids and clasName to UpdateUI function
         UpdateUI.applyStyle(
             [   [ 'page', [ 'game-page' ] ],
@@ -100,7 +99,9 @@ export class GamePage {
         const newButton = document.createElement('button');
         newButton.textContent = 'Validate'; 
         newButton.id = 'validate-butt';
-        document.querySelector('button').replaceWith(newButton);// Remove previous eventListener
-        newButton.addEventListener('click', this.renderNextPage);
+        // Remove previous eventListener
+        document.querySelector('button').replaceWith(newButton);
+        newButton.addEventListener('click', App.scorePage.renderScorePage.bind(App.scorePage));
+        newButton.disabled = true;
     }
 }

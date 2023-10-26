@@ -1,5 +1,5 @@
 
-@mixin start {
+@mixin button-start {
     background-color: var(--white);
     color: var(--bubbleInnerText);
     transition: 0.5s;
@@ -8,4 +8,10 @@
     &:hover {
         transform: scale(1.1);
     } 
+}
+
+@mixin button-start-active {
+    color: var(--white);
+    background-color: var(--orange);
+    transition-duration: 1s;
 }

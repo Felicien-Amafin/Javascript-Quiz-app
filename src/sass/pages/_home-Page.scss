@@ -44,9 +44,13 @@
     gap: 2rem;
 
     .play-butt {
-        @include util.start;
+        @include util.button-start;
     }
     
+    .play-butt--active {
+        @include util.button-start-active;
+    }
+
     .rules-butt {
         width: 9.375rem;
         border: 0.0625rem solid var(--white);
@@ -54,13 +58,6 @@
         color: var(--white);
         align-items: center;
         transition: 0.5s;
-        
-        
-        
-
-       /*  @include util.breakpoint(x-large) {
-            width: 9.625rem;
-        } */
 
         &:hover {
             transform: scale(1.1);

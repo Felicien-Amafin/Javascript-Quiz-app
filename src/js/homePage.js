@@ -1,18 +1,14 @@
-import { DomHelper } from "./domHelper.js";
+import { App } from "./app.js";
 import { UpdateUI } from "./updateUI.js";
 
 
 export class HomePage {
-    constructor(containderId, renderNextPage) {
-        this.containerId = containderId,
-        this.renderNextPage = renderNextPage;
-        this.renderHomePage();
-        DomHelper.homePageObj = this;
-        DomHelper.storeHomePage(this.renderHomePage);
+    constructor(containderId) {
+        this.containerId = containderId
     }
 
     renderHomePage() {
-        this.render();
+        this.renderRootEl();
 
         if(document.getElementById('page').className !== '') {
             UpdateUI.clearClass([ 'page' ], false);
@@ -20,7 +16,7 @@ export class HomePage {
         //Add Ids and className to UpdateUI function
         UpdateUI.applyStyle(
             [  
-                [ 'app', [ 'app'] ],
+                [ 'app', [ 'app-pos-relative'] ],
                 [ 'page', [ 'page', 'page'] ],
                 [ 'overlay', [ 'flex', 'flex__gap100', 'overlay'] ],
                 [ 'buttons', [ 'flex', 'flex-buttons' ] ]
@@ -33,7 +29,7 @@ export class HomePage {
         );
     }
 
-    render() {
+    renderRootEl() {
         const container = document.getElementById(`${this.containerId}`);
         container.innerHTML = `
             <div id="overlay">
@@ -47,9 +43,16 @@ export class HomePage {
                 </div>
             </div>
         `
-        document.getElementById('play').addEventListener('click', this.renderNextPage );
+        document.getElementById('play').addEventListener(
+            'click', 
+            ()=> { 
+                document.getElementById('play').className = 'play-butt--active';
+            } 
+        );
         const subContainer = document.getElementById('overlay');
+      
         document.getElementById('rules').addEventListener('click', this.displayRulesAlert.bind(null, subContainer, 'rules-alert'));
+        document.getElementById('play').addEventListener('click', App.topicPage.renderSettingPage.bind(App.topicPage));
     }
 
     displayRulesAlert(container, templateId) {

@@ -1,4 +1,4 @@
-import { DomHelper } from "./domHelper.js";
+import { App } from "./app.js";
 import { UpdateUI } from "./updateUI.js";
 
 export class ScorePage {
@@ -28,7 +28,7 @@ export class ScorePage {
                 <p id="score">Number of good response(s):<span></span> </p>
                 <button id="home-page-butt">Home Page</button>
         `
-        document.getElementById('home-page-butt')
-        .addEventListener('click', DomHelper.returnToHomePage.bind(DomHelper.homePageObj));
+        const homepageButt = document.getElementById('home-page-butt');
+        homepageButt.addEventListener('click', App.homePage.renderHomePage.bind(App.homePage));
     }
 }

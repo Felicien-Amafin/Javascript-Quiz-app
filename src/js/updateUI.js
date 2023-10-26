@@ -1,4 +1,28 @@
 export class UpdateUI {
+    static makeBubbleSelectable() {
+        const bubbleList = document.querySelectorAll('li');
+        for(const bubble of bubbleList ) {
+            bubble.addEventListener('click', UpdateUI.applyBubbleSelectedClass);
+        }
+    }
+
+    static applyBubbleSelectedClass(clickEvent) {
+        if(document.querySelector('.bubble-selected')) {
+            document.querySelector('.bubble-selected').classList.remove('bubble-selected');
+        }
+        clickEvent.target.classList.toggle('bubble-selected');
+        const button = document.getElementById('button');
+        button.disabled = false;
+        button.classList.remove('card__button--disabled');
+        button.classList.add('card__button--enabled');
+    }
+
+    static removeBubbleSelectedClass() {
+        if(document.querySelector('.bubble-selected')) {
+            document.querySelector('.bubble-selected').classList.remove('bubble-selected');
+        }
+    }
+
     static applyStyle(prtsNodesClasses, chldsNodesClasses) {
         const parents = prtsNodesClasses;
         const childs = chldsNodesClasses;
@@ -42,9 +66,12 @@ export class UpdateUI {
         if(document.querySelector('ul').innerHTML !== '') {
             const licount = document.querySelectorAll('li');
             const liAddOrRetrieve =  Math.abs(licount.length - liList.length);
+            let newLi;
             if(licount.length < liList.length) {
                 for(let i = 0; i < liAddOrRetrieve; i ++) {
-                  document.querySelector('ul').insertAdjacentHTML('beforeend', '<li></li>');
+                    newLi = document.createElement('li');
+                    newLi.addEventListener('click', UpdateUI.applyBubbleSelectedClass);
+                    document.querySelector('ul').insertAdjacentElement('beforeend', newLi);  
                 }
             } else if(licount.length > liList.length) {
                 for(let i = 0; i < liAddOrRetrieve; i ++) {

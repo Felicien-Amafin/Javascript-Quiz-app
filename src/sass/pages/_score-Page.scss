@@ -17,5 +17,9 @@
 }
 
 .homePage-butt {
-    @include util.start;
+    @include util.button-start;
+}
+
+.homePage-butt-active {
+    @include util.button-start-active;
 }
