@@ -29,6 +29,7 @@ export class ScorePage {
                 <button id="home-page-butt">Home Page</button>
         `
         const homepageButt = document.getElementById('home-page-butt');
+        //Add event listener to button to display home page
         homepageButt.addEventListener('click', App.homePage.renderHomePage.bind(App.homePage));
     }
 }

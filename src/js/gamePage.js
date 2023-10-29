@@ -1,12 +1,12 @@
 import { UpdateUI } from "./updateUI.js";
 import { App } from "./app.js";
+import { QuestionHandler } from "./questionHandler.js";
+import { CountdownHandler } from "./countdownHandler.js";
 
 export class GamePage {
-    constructor(containerId, h2TextContent, lilist, renderNextPage) {
+    constructor(containerId, lilist) {
         this.containerId = containerId;
-        this.h2TextContent = h2TextContent;
         this.lilist = lilist;
-        this.renderNextPage = renderNextPage;
     }
 
     renderGamePage() {
@@ -26,7 +26,6 @@ export class GamePage {
                     [
                         [ 'block1__countdown' ],
                         [ 'block1__qust-counter' ],
-                        [ 'block1__rsp-feedback' ],
                     ]
                 ],
                 [
@@ -59,7 +58,7 @@ export class GamePage {
                     [
                         [ 'block2__question' ],
                         [],
-                        [ 'block2__button' ]
+                        []
                     ]
                 ],
                 [
@@ -74,10 +73,13 @@ export class GamePage {
 
             ]
         );
+        UpdateUI.disableButton('button', 'block2__button--disabled');
+        this.lauchQuestionHandler();
     }
 
     addMissingPageElements() {
         const page = document.getElementById(`${this.containerId}`);
+        //Add countdown + question counter in subcontainer1
         page.insertAdjacentHTML('afterbegin',`
             <div id="sub-container1">
                 <div id="countdown">
@@ -91,17 +93,36 @@ export class GamePage {
                     <span id="q-count-prt1"></span>
                     <span id="q-count-prt2">/20</span>
                 </h3>
-                <p id="feedback">Good!</p>
             </div>
         `);
-        
+        //Update element for subcontainer2
         document.getElementById('sub-container').id = 'sub-container2';
+        document.getElementById('tittle').id = 'question';
         const newButton = document.createElement('button');
         newButton.textContent = 'Validate'; 
-        newButton.id = 'validate-butt';
-        // Remove previous eventListener
-        document.querySelector('button').replaceWith(newButton);
+        newButton.id = 'button';
+        document.querySelector('button').replaceWith(newButton); // Remove previous eventListener
         newButton.addEventListener('click', App.scorePage.renderScorePage.bind(App.scorePage));
-        newButton.disabled = true;
     }
+
+    lauchQuestionHandler() {
+        QuestionHandler.fetchQuestionsFromApi()
+        .then((xhrResponse)=> {
+            const data = JSON.parse(xhrResponse);
+            QuestionHandler.storeQuestionsInArray(data);
+            QuestionHandler.createCurrentQuestionObj();
+            QuestionHandler.fetchSingleQuestionFromArray();
+            QuestionHandler.questionDisplayHandler();
+            CountdownHandler.launchCountdown();
+
+            /* gamePage.renderPage();
+            questions.questionDisplayHandler();
+            countdown.setCountdown() */;
+        })
+        .catch((xhrError)=> {
+            console.log(xhrError)
+        })
+    }
+
+
 }

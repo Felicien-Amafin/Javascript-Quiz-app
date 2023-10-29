@@ -32,7 +32,6 @@ export class App {
         this.gamePage = 
             new GamePage(
                 'page',
-                '', 
                 ['p1', 'p2', 'p3', 'p4']
             );   
         this.scorePage = new ScorePage('page');  

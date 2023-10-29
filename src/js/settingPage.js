@@ -22,10 +22,9 @@ export class SettingPage {
             //Add Ids and className to UpdateUI function
             UpdateUI.applyStyle(
                 [   
-                    [ 'page', [ 'page', 'page' ] ],
+                    [ 'page', [ 'page' ] ],
                     [ 'sub-container', [ 'card', 'flex', 'flex__space-ev' ] ], 
-                    [ 'tittle', [ 'card__tittle', 'flex' ] ], 
-                    [ 'button', [ 'card__button', 'card__button--disabled' ] ]
+                    [ 'tittle', [ 'card__tittle', 'flex' ] ]
                 ],
 
                 [
@@ -41,7 +40,10 @@ export class SettingPage {
                     ]
                 ]
             )
+            UpdateUI.disableButton('button', 'card__button--disabled');
+            //Add event listener to store topic
             document.getElementById('button').addEventListener('click', this.configGameTopic.bind(this));
+            //Add event listner to render level page
             document.getElementById('button').addEventListener('click', App.levelPage.updateSettingPage.bind(App.levelPage));
         }, 1500);
     }
@@ -63,7 +65,7 @@ export class SettingPage {
                 <ul id='list'></ul>
                 <button id='button'></button>
             `
-            document.querySelector('button').disabled = true;
+            UpdateUI.disableButton('button', 'card__button--disabled');
         }
     } 
 
@@ -81,23 +83,33 @@ export class SettingPage {
         UpdateUI.updateLiNumber(this.lilist);
         UpdateUI.removeBubbleSelectedClass();
         this.addStaticTextContent(this.h2TextContent, this.lilist, this.buttonTextContent);
+        this.updateButton();
+    }
+
+    configGameTopic() {
+        let topic = document.querySelector('.bubble-selected').textContent;
+        topic = topic.toLowerCase();
+        this.topic = topic.replaceAll(' ','_');
+        console.log(App.topicPage.topic)
+    }
+
+    configGameLevel() {
+        let level = document.querySelector('.bubble-selected').textContent;
+        level = level.toLowerCase();
+        this.level = level.replaceAll(' ','_');
+        console.log(App.levelPage.level)
+    }
+
+    updateButton() {
         //update button and remove previous eventListener
         const newButton = document.createElement('button');
         newButton.id = 'button';
         newButton.textContent = 'Start';
         document.getElementById('button').replaceWith(newButton);
-        newButton.classList.add('card__button','card__button--disabled');
-        newButton.addEventListener('click', this.configLevel.bind(this));
+         //Add event listener to button to store level
+        newButton.addEventListener('click', this.configGameLevel.bind(this));
+         //Add event listener to button to display Game Page
         newButton.addEventListener('click', App.gamePage.renderGamePage.bind(App.gamePage));
+        UpdateUI.disableButton('button', 'card__button--disabled');
     }
-
-    configGameTopic() {
-        this.topic = document.querySelector('.bubble-selected').textContent;
-    }
-
-    configLevel() {
-        this.level = document.querySelector('.bubble-selected').textContent;
-    }
-
-
 }

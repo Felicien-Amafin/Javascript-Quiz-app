@@ -35,15 +35,11 @@
         margin-bottom: 1.25rem;
     }
 
-    &__button {
-        width: 12.5rem;
-        height: 3.75rem;
-    }
-
     &__button--disabled {
         background-color: var(--card-butt-disable);
-        color: var(--card-butt-text-disable);
+        color: var(--butt-text-disable);
     }
+    
     &__button--enabled {
         background-color: var(--cardTittle);
         color: var(--white);

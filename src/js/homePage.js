@@ -52,6 +52,7 @@ export class HomePage {
         const subContainer = document.getElementById('overlay');
       
         document.getElementById('rules').addEventListener('click', this.displayRulesAlert.bind(null, subContainer, 'rules-alert'));
+        //Add event listener to button to display topic page
         document.getElementById('play').addEventListener('click', App.topicPage.renderSettingPage.bind(App.topicPage));
     }
 

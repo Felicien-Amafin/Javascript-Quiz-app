@@ -11,10 +11,18 @@ export class UpdateUI {
             document.querySelector('.bubble-selected').classList.remove('bubble-selected');
         }
         clickEvent.target.classList.toggle('bubble-selected');
+        
         const button = document.getElementById('button');
         button.disabled = false;
-        button.classList.remove('card__button--disabled');
-        button.classList.add('card__button--enabled');
+        if(document.getElementById('page').className === 'game-page') {
+            //Handles disabled/enabled class for gamepage button
+            button.classList.remove('block2__button--disabled');
+            button.classList.add('block2__button--enabled');
+        } else {
+            //Handles disabled/enabled class for setting page button
+            button.classList.remove('card__button--disabled');
+            button.classList.add('card__button--enabled');
+        }
     }
 
     static removeBubbleSelectedClass() {
@@ -102,5 +110,11 @@ export class UpdateUI {
                 }
             }
         }
+    }
+
+    static disableButton(buttonid, buttonClass) {
+        const button = document.getElementById(`${buttonid}`);
+        button.disabled = true;
+        button.classList.add(`${buttonClass}`);
     }
 }

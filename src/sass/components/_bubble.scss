@@ -1,8 +1,7 @@
 @use '../base/colors';
 
 .bubble-selected {
-    font-size: 20px;
     color: var(--orange);
-    transition: 0.10s;
-    border: 1px solid var(--cardTittle);
+    transition: 0.13s;
+    /* border: 1px solid var(--cardTittle); */
 }
