@@ -1,5 +1,4 @@
 import { UpdateUI } from "./updateUI.js";
-import { App } from "./app.js";
 import { QuestionHandler } from "./questionHandler.js";
 import { CountdownHandler } from "./countdownHandler.js";
 
@@ -73,8 +72,18 @@ export class GamePage {
 
             ]
         );
-        UpdateUI.disableButton('button', 'block2__button--disabled');
-        this.lauchQuestionHandler();
+        UpdateUI.disableButton('button', 'block2__button--disabled', 'block2__button--enabled');
+        QuestionHandler.lauchQuestionHandler();
+        CountdownHandler.launchCountdown();
+        document.getElementById('button').addEventListener('click', this.updateGamePage.bind(this));
+        /* document.getElementById('button').addEventListener(
+            'click', 
+            ()=> {
+                setTimeout(()=>{
+                    this.updateGamePage();
+                }, 4000);
+            }
+        ); */
     }
 
     addMissingPageElements() {
@@ -95,34 +104,26 @@ export class GamePage {
                 </h3>
             </div>
         `);
-        //Update element for subcontainer2
+        //Update elements for subcontainer2
         document.getElementById('sub-container').id = 'sub-container2';
         document.getElementById('tittle').id = 'question';
         const newButton = document.createElement('button');
         newButton.textContent = 'Validate'; 
         newButton.id = 'button';
         document.querySelector('button').replaceWith(newButton); // Remove previous eventListener
-        newButton.addEventListener('click', App.scorePage.renderScorePage.bind(App.scorePage));
     }
 
-    lauchQuestionHandler() {
-        QuestionHandler.fetchQuestionsFromApi()
-        .then((xhrResponse)=> {
-            const data = JSON.parse(xhrResponse);
-            QuestionHandler.storeQuestionsInArray(data);
-            QuestionHandler.createCurrentQuestionObj();
+    updateGamePage() {
+        if(!document.getElementById('button').disabled) {
+            UpdateUI.disableButton('button', 'block2__button--disabled', 'block2__button--enabled');
+        }
+        UpdateUI.giveResponseFeedback();
+        setTimeout(()=>{
+            UpdateUI.removeResponseFeedBack();
+            UpdateUI.toggleBubbleUnclickable();
             QuestionHandler.fetchSingleQuestionFromArray();
             QuestionHandler.questionDisplayHandler();
             CountdownHandler.launchCountdown();
-
-            /* gamePage.renderPage();
-            questions.questionDisplayHandler();
-            countdown.setCountdown() */;
-        })
-        .catch((xhrError)=> {
-            console.log(xhrError)
-        })
+        }, 4000);
     }
-
-
 }

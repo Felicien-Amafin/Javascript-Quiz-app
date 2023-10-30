@@ -13,6 +13,7 @@ button {
     font-size: 1rem;
     box-shadow: none;
     border: none;
+    cursor: pointer;
 }
 
 li{
@@ -26,4 +27,5 @@ li{
     border: 0.0625em solid var(--bubbleInnerText);
     color: var(--bubbleInnerText);
     background-color: var(--white);
+    cursor: pointer;
 }

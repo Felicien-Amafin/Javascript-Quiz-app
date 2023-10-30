@@ -1,3 +1,5 @@
+import { QuestionHandler } from "./questionHandler.js";
+
 export class UpdateUI {
     static makeBubbleSelectable() {
         const bubbleList = document.querySelectorAll('li');
@@ -112,9 +114,47 @@ export class UpdateUI {
         }
     }
 
-    static disableButton(buttonid, buttonClass) {
+    static disableButton(buttonid, buttonDisableClass, buttonEnableClass) {
         const button = document.getElementById(`${buttonid}`);
         button.disabled = true;
-        button.classList.add(`${buttonClass}`);
+        button.classList.add(`${buttonDisableClass}`);
+        if(button.classList.contains(buttonEnableClass)) {
+            button.classList.remove(`${buttonEnableClass}`);
+        }
     }
+
+    static giveResponseFeedback() {
+        this.toggleBubbleUnclickable();
+        const response = document.querySelector('.bubble-selected');
+
+        if(response) {
+            response.classList.toggle('bubble-selected');
+            if(response.textContent === QuestionHandler.currentQuestion.correctAnswer) {
+                response.classList.toggle('block2__bubble--correctAnswer');
+            } else {
+                response.classList.toggle('block2__bubble--wrongAnswer');
+                QuestionHandler.fetchCorrectAnswer();
+            }
+        } else {
+            QuestionHandler.fetchCorrectAnswer();
+        }
+    }
+
+    static toggleBubbleUnclickable() {
+        const bubbleList = document.querySelectorAll('li');
+        for(const bubble of bubbleList) {
+            bubble.classList.toggle('block2__bubble--unclickable');
+        }
+    }
+
+    static removeResponseFeedBack() {
+        document.querySelector('.block2__bubble--correctAnswer')
+        .classList.toggle('block2__bubble--correctAnswer');
+
+        if(document.querySelector('.block2__bubble--wrongAnswer')) {
+            document.querySelector('.block2__bubble--wrongAnswer')
+            .classList.toggle('block2__bubble--wrongAnswer');
+        }
+    }
+
 }

@@ -134,11 +134,24 @@
         border: none;
     }
 
+    &__bubble--correctAnswer {
+        color: var(--correctAnswer);
+        transition: 0.15s;
+    }
 
+    &__bubble--wrongAnswer {
+        color: var(--wrongAnswer);
+        transition: 0.15s;
+    }
+
+    &__bubble--unclickable {
+        pointer-events: none;
+    }
+    
     &__button--disabled {
         background-color: var(--gamePage-butt-disabled);
         color: var(--butt-text-disable);
-
+        transition: 0.5s;
     }
 
     &__button--enabled {

@@ -40,7 +40,7 @@ export class SettingPage {
                     ]
                 ]
             )
-            UpdateUI.disableButton('button', 'card__button--disabled');
+            UpdateUI.disableButton('button', 'card__button--disabled', 'card__button--enabled');
             //Add event listener to store topic
             document.getElementById('button').addEventListener('click', this.configGameTopic.bind(this));
             //Add event listner to render level page
@@ -110,6 +110,6 @@ export class SettingPage {
         newButton.addEventListener('click', this.configGameLevel.bind(this));
          //Add event listener to button to display Game Page
         newButton.addEventListener('click', App.gamePage.renderGamePage.bind(App.gamePage));
-        UpdateUI.disableButton('button', 'card__button--disabled');
+        UpdateUI.disableButton('button', 'card__button--disabled', 'card__button--enabled');
     }
 }

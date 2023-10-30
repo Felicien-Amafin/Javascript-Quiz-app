@@ -3,7 +3,8 @@ import { Question } from "./questionObject.js";
 
 export class QuestionHandler {
     constructor() {
-        this.questionsArray;
+        this.filteredQuestions;
+        this.questionCount;
         this.currentQuestion;
          /* currentQuestion = {
             question,
@@ -11,6 +12,20 @@ export class QuestionHandler {
             answers,
             currentQindex,
         } */
+    }
+
+    static lauchQuestionHandler() {
+        this.fetchQuestionsFromApi()
+        .then((xhrResponse)=> {
+            const data = JSON.parse(xhrResponse);
+            this.storeQuestionsInArray(data);
+            this.createCurrentQuestionObj();
+            this.fetchSingleQuestionFromArray();
+            this.questionDisplayHandler();
+        })
+        .catch((xhrError)=> {
+            console.log(xhrError)
+        })
     }
 
     static createCurrentQuestionObj() {
@@ -35,7 +50,7 @@ export class QuestionHandler {
     }
 
     static storeQuestionsInArray(data) {
-        this.questionsArray = data;
+        this.filteredQuestions = data;
         console.log(data)
     }
 
@@ -44,10 +59,14 @@ export class QuestionHandler {
         if(!this.currentQuestion.currentQindex) {
             this.currentQuestion.currentQindex = 0;
         }
+        //Change question count
+        this.questionCount = this.currentQuestion.currentQindex + 1;
+        document.getElementById('q-count-prt1').textContent = `${this.questionCount}`;
+
         let index = this.currentQuestion.currentQindex;
-        this.currentQuestion.question = this.questionsArray[index].question.text;
-        this.currentQuestion.correctAnswer = this.questionsArray[index].correctAnswer;
-        this.currentQuestion.answers = this.questionsArray[index].incorrectAnswers;
+        this.currentQuestion.question = this.filteredQuestions[index].question.text;
+        this.currentQuestion.correctAnswer = this.filteredQuestions[index].correctAnswer;
+        this.currentQuestion.answers = this.filteredQuestions[index].incorrectAnswers;
         this.setAtRandomIndex(this.currentQuestion.correctAnswer);
         this.currentQuestion.currentQindex ++;
     }
@@ -69,5 +88,19 @@ export class QuestionHandler {
         for(let index = 0; index < responseBubbles.length ; index ++) {
             responseBubbles[index].textContent = this.currentQuestion.answers[index];
         }
+    }
+
+    static fetchCorrectAnswer() {
+        const bubbleList = document.querySelectorAll('li');
+        for(const bubble of bubbleList) {
+            if(bubble.textContent === this.currentQuestion.correctAnswer) {
+                bubble.classList.toggle('block2__bubble--correctAnswer');
+                break;
+            }
+        }
+    }
+
+    static filterQuestion() {
+        
     }
 }

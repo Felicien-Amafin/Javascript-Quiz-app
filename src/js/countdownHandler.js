@@ -1,4 +1,6 @@
 import { Countdown } from "./countdown.js";
+import { App } from "./app.js";
+
 
 export class CountdownHandler {
     constructor() {
@@ -10,7 +12,10 @@ export class CountdownHandler {
     }
 
     static launchCountdown() {
-        this.createCountdownObj();
+        if(!this.countdownObj) {
+            this.createCountdownObj();
+        }
+
         const timer = document.getElementById('countdown_timer');
         const progressCircle = document.getElementById('countdown_outer-circle');
         let interval;
@@ -29,17 +34,15 @@ export class CountdownHandler {
                             )
                         `;
                         if(timer.textContent === '0') {
-                            this.stopCountdown(interval, timer.textContent);
-                            /* gamePage.updatePage(); */
+                            this.stopCountdown(interval);
+                            App.gamePage.updateGamePage();
                         }
                     }, speed); 
-            
-            const button = document.querySelector('button');
-            button.addEventListener('click', this.stopCountdown.bind(null, interval));
-        }
+        const button = document.getElementById('button');
+        button.addEventListener('click', this.stopCountdown.bind(null, interval));
+    }
 
-        static stopCountdown(interval, timerState) {
-            this.countdownObj.timerState = timerState;
-            clearInterval(interval);
-        }
+    static stopCountdown(interval) {
+        clearInterval(interval);
+    }
 }
