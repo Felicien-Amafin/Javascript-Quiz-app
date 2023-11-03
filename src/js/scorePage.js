@@ -1,5 +1,4 @@
 import { App } from "./app.js";
-import { QuestionHandler } from "./questionHandler.js";
 import { UpdateUI } from "./updateUI.js";
 
 export class ScorePage {
