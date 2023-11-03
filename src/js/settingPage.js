@@ -39,7 +39,8 @@ export class SettingPage {
                         ]
                     ]
                 ]
-            )
+            );
+
             UpdateUI.disableButton('button', 'card__button--disabled', 'card__button--enabled');
             //Add event listener to store topic
             document.getElementById('button').addEventListener('click', this.configGameTopic.bind(this));
@@ -52,7 +53,7 @@ export class SettingPage {
         const subContainer = document.createElement('div');
         subContainer.id = 'sub-container';
         this.subContainerId = subContainer.id;
-        const mainContainer = document.getElementById(`${mainContainerId}`)
+        const mainContainer = document.getElementById(`${mainContainerId}`);
         mainContainer.innerHTML = '';
         mainContainer.appendChild(subContainer);
     }
@@ -90,14 +91,12 @@ export class SettingPage {
         let topic = document.querySelector('.bubble-selected').textContent;
         topic = topic.toLowerCase();
         this.topic = topic.replaceAll(' ','_');
-        console.log(App.topicPage.topic)
     }
 
     configGameLevel() {
         let level = document.querySelector('.bubble-selected').textContent;
         level = level.toLowerCase();
         this.level = level.replaceAll(' ','_');
-        console.log(App.levelPage.level)
     }
 
     updateButton() {

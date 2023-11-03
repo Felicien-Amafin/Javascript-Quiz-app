@@ -1,5 +1,6 @@
 import { Countdown } from "./countdown.js";
 import { App } from "./app.js";
+import { UpdateUI } from "./updateUI.js";
 
 
 export class CountdownHandler {
@@ -34,10 +35,12 @@ export class CountdownHandler {
                             )
                         `;
                         if(timer.textContent === '0') {
+                            UpdateUI.buttonClicked = false;
                             this.stopCountdown(interval);
-                            App.gamePage.updateGamePage();
+                            App.gamePage.pagesHandler();
                         }
                     }, speed); 
+                    
         const button = document.getElementById('button');
         button.addEventListener('click', this.stopCountdown.bind(null, interval));
     }

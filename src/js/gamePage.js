@@ -1,6 +1,7 @@
 import { UpdateUI } from "./updateUI.js";
 import { QuestionHandler } from "./questionHandler.js";
 import { CountdownHandler } from "./countdownHandler.js";
+import { App } from "./app.js";
 
 export class GamePage {
     constructor(containerId, lilist) {
@@ -69,21 +70,15 @@ export class GamePage {
                         [ 'block2__bubble' ]
                     ]
                 ]
-
             ]
         );
+
         UpdateUI.disableButton('button', 'block2__button--disabled', 'block2__button--enabled');
+        UpdateUI.buttonClicked = true;
         QuestionHandler.lauchQuestionHandler();
         CountdownHandler.launchCountdown();
-        document.getElementById('button').addEventListener('click', this.updateGamePage.bind(this));
-        /* document.getElementById('button').addEventListener(
-            'click', 
-            ()=> {
-                setTimeout(()=>{
-                    this.updateGamePage();
-                }, 4000);
-            }
-        ); */
+        App.scorePage.initScore();
+        document.getElementById('button').addEventListener('click', this.pagesHandler.bind(this));
     }
 
     addMissingPageElements() {
@@ -104,6 +99,7 @@ export class GamePage {
                 </h3>
             </div>
         `);
+
         //Update elements for subcontainer2
         document.getElementById('sub-container').id = 'sub-container2';
         document.getElementById('tittle').id = 'question';
@@ -117,7 +113,9 @@ export class GamePage {
         if(!document.getElementById('button').disabled) {
             UpdateUI.disableButton('button', 'block2__button--disabled', 'block2__button--enabled');
         }
+
         UpdateUI.giveResponseFeedback();
+
         setTimeout(()=>{
             UpdateUI.removeResponseFeedBack();
             UpdateUI.toggleBubbleUnclickable();
@@ -125,5 +123,19 @@ export class GamePage {
             QuestionHandler.questionDisplayHandler();
             CountdownHandler.launchCountdown();
         }, 4000);
+    }
+
+    pagesHandler() {
+        if((QuestionHandler.questionCount + 1) === QuestionHandler.filteredQuestions.length) {
+            UpdateUI.disableButton('button', 'block2__button--disabled', 'block2__button--enabled');
+            UpdateUI.giveResponseFeedback();
+
+            setTimeout(()=>{
+                App.scorePage.renderScorePage();
+            }, 4000);
+            
+        } else {
+            this.updateGamePage();
+        }
     }
 }

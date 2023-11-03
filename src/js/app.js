@@ -15,6 +15,7 @@ export class App {
 
     static createPagesObj() {
         this.homePage = new HomePage('page');
+
         this.topicPage = 
             new SettingPage(
                 'page',
@@ -22,6 +23,7 @@ export class App {
                 ['Film and Tv', 'Science', 'General Klg', 'History', 'Music'], 
                 'Next'
             );
+
         this.levelPage = 
             new SettingPage(
                 'page',
@@ -29,11 +31,13 @@ export class App {
                 ['Easy', 'Medium', 'Hard'], 
                 'Next'
             );
+
         this.gamePage = 
             new GamePage(
                 'page',
-                ['p1', 'p2', 'p3', 'p4']
+                ['', '', '', '']
             );   
+            
         this.scorePage = new ScorePage('page');  
     }
 

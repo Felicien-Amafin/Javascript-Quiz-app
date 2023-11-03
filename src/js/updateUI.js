@@ -1,6 +1,9 @@
 import { QuestionHandler } from "./questionHandler.js";
+import { App } from "./app.js";
 
 export class UpdateUI {
+    buttonClicked;
+
     static makeBubbleSelectable() {
         const bubbleList = document.querySelectorAll('li');
         for(const bubble of bubbleList ) {
@@ -114,8 +117,8 @@ export class UpdateUI {
         }
     }
 
-    static disableButton(buttonid, buttonDisableClass, buttonEnableClass) {
-        const button = document.getElementById(`${buttonid}`);
+    static disableButton(buttonId, buttonDisableClass, buttonEnableClass) {
+        const button = document.getElementById(`${buttonId}`);
         button.disabled = true;
         button.classList.add(`${buttonDisableClass}`);
         if(button.classList.contains(buttonEnableClass)) {
@@ -127,17 +130,23 @@ export class UpdateUI {
         this.toggleBubbleUnclickable();
         const response = document.querySelector('.bubble-selected');
 
-        if(response) {
-            response.classList.toggle('bubble-selected');
+        if(this.buttonClicked) {
+            response.classList.toggle('bubble-selected'); 
+
             if(response.textContent === QuestionHandler.currentQuestion.correctAnswer) {
                 response.classList.toggle('block2__bubble--correctAnswer');
-            } else {
+                App.scorePage.incrementScore();
+                
+            } else if (response.textContent !== QuestionHandler.currentQuestion.correctAnswer ) {
                 response.classList.toggle('block2__bubble--wrongAnswer');
                 QuestionHandler.fetchCorrectAnswer();
             }
         } else {
             QuestionHandler.fetchCorrectAnswer();
+            //reset buttonClicked on true;
+            this.buttonClicked = true;
         }
+
     }
 
     static toggleBubbleUnclickable() {
@@ -148,6 +157,10 @@ export class UpdateUI {
     }
 
     static removeResponseFeedBack() {
+        if(document.querySelector('.bubble-selected')) {
+            document.querySelector('.bubble-selected').classList.toggle('bubble-selected');
+        }
+
         document.querySelector('.block2__bubble--correctAnswer')
         .classList.toggle('block2__bubble--correctAnswer');
 
