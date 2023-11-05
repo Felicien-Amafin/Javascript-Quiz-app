@@ -9,7 +9,7 @@
     right:0;
     left: 0;
     min-height: 100%;
-
+    z-index: 6000;
     &__show-up {
         background-color: var(--overlay);
     }

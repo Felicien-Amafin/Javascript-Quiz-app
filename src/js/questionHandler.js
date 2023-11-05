@@ -20,7 +20,7 @@ export class QuestionHandler {
         .then((xhrResponse)=> {
             const data = JSON.parse(xhrResponse);
             this.storeUnfilteredQuestions(data);
-            this.filterQuestion(65, 3, 20);
+            this.filterQuestion(65, 20, 20);
             this.createCurrentQuestionObj();
             this.fetchSingleQuestionFromArray();
             this.questionDisplayHandler();

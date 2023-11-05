@@ -46,6 +46,7 @@ export class SettingPage {
             document.getElementById('button').addEventListener('click', this.configGameTopic.bind(this));
             //Add event listner to render level page
             document.getElementById('button').addEventListener('click', App.levelPage.updateSettingPage.bind(App.levelPage));
+            document.querySelector('footer').classList.add('footer-d-none');
         }, 1500);
     }
 
