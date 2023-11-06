@@ -48,6 +48,7 @@ export class SettingPage {
             document.getElementById('button').addEventListener('click', App.levelPage.updateSettingPage.bind(App.levelPage));
             document.querySelector('footer').classList.add('footer-d-none');
         }, 1500);
+        
     }
 
     createSubContainer(mainContainerId) {
